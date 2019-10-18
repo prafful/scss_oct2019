@@ -1,0 +1,75 @@
+$mycolor: brown;
+
+h1{
+    color: $mycolor;
+}
+
+p{
+    color: $mycolor;
+}
+
+/********Nesting****************/
+
+$bgcolor: aqua;
+$textcolor: blue;
+$hoverbackground: white;
+
+nav{
+    ul{
+        background-color: $bgcolor;
+        list-style: none;
+    }
+    li{
+        display: inline;
+    }
+
+    a{
+        color: $textcolor;
+        padding: 10px;
+    }
+
+    a:hover{
+        background-color: $hoverbackground ;
+    }
+
+}
+
+/***********Partials****************************/
+
+@import "profile";
+
+
+/************Mixins*******************/
+
+@mixin border-radius($radiusvalue){
+    border-radius: $radiusvalue;
+}
+
+/********** Inheritance ***********/
+
+.small-panel{
+
+    @include border-radius(5px);
+
+    border:3px solid blue;
+    background-color: green;
+    margin:10px;
+
+}
+
+$panel-padding: 8px;
+
+.medium-panel{
+    @extend .small-panel;
+    @include border-radius(10px);
+    font-size: 22px;
+    padding: $panel-padding;
+}
+
+.large-panel{
+    @extend .small-panel;
+    @include border-radius(20px);
+    font-size: 31px;
+    padding: $panel-padding + 16;
+}
+
